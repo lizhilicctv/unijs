@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>lizhili js开发</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<style type="text/css">
+			/*以下是基本定义*/
+			body,dd,div,dl,dt,fieldset,form,h1,h2,h3,h4,input,li,ol,p,textarea,ul{padding:0;margin:0}
+			li,ul{list-style:none}
+			body{font-size:12px;color:#333;text-decoration:none;background-color:#fff;margin:0}
+			img{text-decoration:none;border-top-width:0;border-right-width:0;border-bottom-width:0;border-left-width:0;border-top-style:none;border-right-style:none;border-bottom-style:none;border-left-style:none}
+			a:link{font-size:12px;color:#333;text-decoration:none;line-height:20px}
+			a:visited{font-size:12px;color:#333;text-decoration:none;line-height:20px}
+			a:hover{font-size:12px;color:#333;text-decoration:underline;line-height:20px}
+			/* 下面是样式 */
+			#banner {
+				margin: 0 auto;
+				font-size: 0;
+				width: 1000px;
+			}
+			#banner #bd {
+				width: 1000px;
+				height: 410px;
+				padding: 0;
+				overflow: hidden;
+				position: relative;
+			}
+			#banner ul {
+				width: 6000px;
+				position: absolute;
+				transition: all 1s;
+			}
+			#banner ul li {
+				display: inline-block;
+				width: 1000px;
+			}
+			#banner ul li img {
+				width: 100%;
+			}
+		</style>
+		<div id="banner">
+			<div id="bd">
+				<ul>
+					<li><img src="img/1.jpg"></li>
+					<li><img src="img/2.jpg"></li>
+					<li><img src="img/3.jpg"></li>
+					<li><img src="img/4.jpg"></li>
+					<li><img src="img/5.jpg"></li>
+					<li><img src="img/6.jpg"></li>
+				</ul>
+			</div>
+		</div>
+		<div id="test">
+			lizhili
+		</div>
+		<script src="js/uni.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//下面是幻灯片
+			var zhi = 0;
+			window.setInterval(function() {
+				if (zhi >= 5000) {
+					zhi = 0;
+				} else {
+					zhi += 1000;
+				}
+				uni('#banner ul').css({
+					'left': '-' + zhi + 'px'
+				});
+			}, 2500);
+
+			//下面是替换html
+			uni('#test').html('<h1>我里面的内容替换了</h1>');
+			//下面是验证
+			var name = "kkk",
+				num = 777;
+			let check = uni.check([{
+					'data': name,
+					'type': 'string',
+					'msg': '必须为字符串',
+				},
+				{
+					'data': num,
+					'type': 'int',
+					'msg': '必须为数字'
+				},
+				{
+					'data': num,
+					'type': 'same',
+					'msg': '必须等于44',
+					'where': 44
+				}
+			]);
+			console.log(check)
+		</script>
+	</body>
+</html>
